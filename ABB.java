@@ -19,7 +19,20 @@ public class ABB {
         this.valor = valor;
     }
     public void insert(int x){
-
+        if(x<valor){
+            if(subarvoreEsquerda == null){
+                subarvoreEsquerda = new ABB(x);
+                subarvoreEsquerda.altura = this.altura+1;
+            }
+            else subarvoreEsquerda.insert(x);
+        }
+        else if(x>valor){
+            if(subarvoreDireita == null){
+                subarvoreDireita = new ABB(x);
+                subarvoreDireita.altura = this.altura+1;
+            }
+            else subarvoreDireita.insert(x);
+        } else return;
     }
     public void remove(int x){
 
@@ -41,6 +54,7 @@ public class ABB {
 
     //Métodos de Esther:
     public boolean ehCheia(){
+
         return false;
     }
     public boolean ehCompleta(){
@@ -50,6 +64,10 @@ public class ABB {
         return "Gaiata";
     }
     public void imprimeArvore(int s){
+        if(s==1){
 
+        } else if (s==2) {
+
+        } else System.out.println("Desculpe, só existem dois tipos de impressão.\nEntre com '1' ou '2'.");
     }
 }
