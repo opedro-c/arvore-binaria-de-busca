@@ -37,7 +37,7 @@ public class GerenciadorDeRecursos {
                 String[] op = input.split(" ");
                 switch (op[0]) {
                     case "BUSCAR":
-                        abb.search(Integer.parseInt(op[1]));
+                        abb.buscar(Integer.parseInt(op[1]));
                         break;
                     case "INSIRA":
                         abb.insert(Integer.parseInt(op[1]));
@@ -55,7 +55,7 @@ public class GerenciadorDeRecursos {
                          abb.mediana();
                          break;
                     case "MEDIA" :
-                         abb.media();
+                         abb.media(Integer.parseInt(op[1]));
                          break;
                     case "CHEIA" :
                          abb.ehCheia();

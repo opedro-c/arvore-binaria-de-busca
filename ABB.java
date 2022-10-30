@@ -138,19 +138,38 @@ public class ABB {
             }
         }
     }
-    public void search(int x){
-        if(x<valor){
-            if(subarvoreEsquerda != null){
-                subarvoreEsquerda.search(x);
+    
+    public void buscarNo(int x, ABB node) {
+        if (x < valor) {
+            if (subarvoreEsquerda != null) {
+                subarvoreEsquerda.buscarNo(x, node);
             }
-            else System.out.println("Chave não encontrada");
+        } else if (x > valor) {
+            if (subarvoreDireita != null) {
+                subarvoreDireita.buscarNo(x, node);
+            }
+        } else {
+            node.valor = this.valor;
+            node.subarvoreEsquerda = this.subarvoreEsquerda;
+            node.subarvoreDireita = this.subarvoreDireita;
         }
-        else if(x>valor){
-            if(subarvoreDireita != null){
-                subarvoreDireita.search(x);
-            }
-            else System.out.println("Chave não encontrada");
-        } else System.out.println("Chave encontrada");
+    }
+
+    public ABB retornarNo(int x) {
+        ABB node = new ABB();
+        node.valor = -1;
+        buscarNo(x, node);
+        return node.valor != -1 ? node : null;
+    }
+
+    public boolean buscar(int x) {
+        if (retornarNo(x) != null) {
+            System.out.println("Chave encontrada");
+            return true;
+        } else {
+            System.out.println("Chave não encontrada");
+        }
+        return false;
     }
 
     // Métodos de Pedro:
@@ -175,9 +194,10 @@ public class ABB {
         if (node.subarvoreDireita != null)
             sum(sum, count, node.subarvoreDireita);
     }
-    public double media() {
+    public double media(int x) {
         Double[] sum = {0.0}, count = {0.0};
-        sum(sum, count, this);
+        ABB abbEncontrada = retornarNo(x);
+        sum(sum, count, abbEncontrada);
         System.out.println(sum[0] / count[0]);
         return 0;
     }
