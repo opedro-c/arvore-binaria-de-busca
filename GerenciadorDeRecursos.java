@@ -55,7 +55,7 @@ public class GerenciadorDeRecursos {
                          abb.mediana();
                          break;
                     case "MEDIA" :
-                         abb.media(Integer.parseInt(op[1]));
+                         abb.media();
                          break;
                     case "CHEIA" :
                          abb.ehCheia();

@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.Stack;
 
 public class ABB {
@@ -167,8 +166,19 @@ public class ABB {
         System.out.println("MEDIANA");
         return 0;
     }
-    public double media(int x){
-        System.out.println("MEDIA");
+
+    public void sum(Double[] sum, Double[] count, ABB node) {
+        sum[0] += node.valor;
+        count[0]++;
+        if (node.subarvoreEsquerda != null)
+            sum(sum, count, node.subarvoreEsquerda);
+        if (node.subarvoreDireita != null)
+            sum(sum, count, node.subarvoreDireita);
+    }
+    public double media() {
+        Double[] sum = {0.0}, count = {0.0};
+        sum(sum, count, this);
+        System.out.println(sum[0] / count[0]);
         return 0;
     }
 
