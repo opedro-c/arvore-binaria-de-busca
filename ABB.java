@@ -64,8 +64,7 @@ public class ABB {
     private int menorDaSubarvore(ABB node){
         if(node.subarvoreEsquerda == null){
             return node.valor;
-        } else menorDaSubarvore(node.subarvoreEsquerda);
-        return -1; //Not found??
+        } else return menorDaSubarvore(node.subarvoreEsquerda);
     }
     public void remove(int x){
         if(altura == -1 && subarvoreDireita == null && subarvoreEsquerda == null){ //negative height = empty tree
