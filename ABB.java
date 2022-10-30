@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Stack;
 
 public class ABB {
@@ -20,7 +21,7 @@ public class ABB {
         subarvoreDireita = null;
         this.valor = valor;
     }
-    public ABB(int... valores){
+    public ABB(Integer... valores){
         altura = 0;
         subarvoreEsquerda = null;
         subarvoreDireita = null;
@@ -153,19 +154,23 @@ public class ABB {
         } else System.out.println("Chave encontrada");
     }
 
-    /* Métodos de Pedro:
-    * public int enesimoElemento(int n){
+    // Métodos de Pedro:
+    public int enesimoElemento(int n){
+        System.out.println("ENESIMO");
         return 0;
     }
-    * public int posicao(int x){
+    public int posicao(int x){
+        System.out.println("POSICAO");
         return 0;
     }
-    * public  int mediana(){
+    public int mediana(){
+        System.out.println("MEDIANA");
         return 0;
     }
-    * public double media(int x){
+    public double media(int x){
+        System.out.println("MEDIA");
         return 0;
-    }*/
+    }
 
     //Métodos de Thuanny:
     public boolean ehCheia(){
