@@ -195,9 +195,27 @@ public class ABB {
         return elementoN[0];
     }
     public int posicao(int x){
-        System.out.println("POSICAO");
-        return 0;
+        Integer[] count = {0};
+        Boolean[] encontrou = {false};
+        encontrarPosicao(x, count, encontrou, this);
+        System.out.println(count[0]);
+        return count[0];
     }
+
+    private void encontrarPosicao(int x, Integer[] count, Boolean[] encontrou, ABB abb) {
+        if (abb.subarvoreEsquerda != null && !encontrou[0]) {
+            encontrarPosicao(x, count, encontrou, abb.subarvoreEsquerda);
+        }
+        if (!encontrou[0])
+            count[0]++;
+        if (abb.valor == x) {
+            encontrou[0] = true;
+        }
+        if (abb.subarvoreDireita != null && !encontrou[0]) {
+            encontrarPosicao(x, count, encontrou, abb.subarvoreDireita);
+        }
+    }
+
     public int mediana(){
         System.out.println("MEDIANA");
         return 0;
