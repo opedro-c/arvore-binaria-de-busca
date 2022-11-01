@@ -25,8 +25,8 @@ public class ABB {
         subarvoreEsquerda = null;
         subarvoreDireita = null;
         valor = valores[0];
-        for(int i : valores){
-            if(i != valor) insert(i);
+        for(int i : valores) {
+            if (i != valor) insert(i);
         }
     }
     public void insert(int x){
@@ -172,10 +172,27 @@ public class ABB {
         return false;
     }
 
+    public void encontrarEnesimoElemento(int n, Integer[] count, Integer[] elementoN, Boolean[] encontrou, ABB node) {
+        if (node.subarvoreEsquerda != null && !encontrou[0]) {
+            encontrarEnesimoElemento(n, count, elementoN, encontrou, node.subarvoreEsquerda);
+        }
+        count[0]++;
+        if (count[0] == n) {
+            encontrou[0] = true;
+            elementoN[0] = node.valor;
+        }
+        if (node.subarvoreDireita != null && !encontrou[0]) {
+            encontrarEnesimoElemento(n, count, elementoN, encontrou, node.subarvoreDireita);
+        }
+    }
+
     // Métodos de Pedro:
     public int enesimoElemento(int n){
-        System.out.println("ENESIMO");
-        return 0;
+        Integer[] count = {0}, elementoN = {0};
+        Boolean[] encontrou = {false};
+        encontrarEnesimoElemento(n, count, elementoN, encontrou, this);
+        System.out.println(elementoN[0]);
+        return elementoN[0];
     }
     public int posicao(int x){
         System.out.println("POSICAO");
