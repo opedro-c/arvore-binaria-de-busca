@@ -29,6 +29,12 @@ public class ABB {
             if (i != valor) insert(i);
         }
     }
+    private int numeroDescedentes(ABB no){
+        int nDesc = 0;
+        if(subarvoreEsquerda != null) nDesc += subarvoreEsquerda.numeroDescedentes(subarvoreEsquerda) + 1;
+        if(subarvoreDireita != null) nDesc += subarvoreDireita.numeroDescedentes(subarvoreDireita) + 1;
+        return nDesc;
+    }
     public void insert(int x){
         if(altura == -1 && subarvoreDireita == null && subarvoreEsquerda == null){ //negative height = empty tree
             this.valor = x;
@@ -138,7 +144,7 @@ public class ABB {
             }
         }
     }
-    
+
     public void buscarNo(int x, ABB node) {
         if (x < valor) {
             if (subarvoreEsquerda != null) {
@@ -216,9 +222,8 @@ public class ABB {
         }
     }
 
-    public int mediana(){
-        System.out.println("MEDIANA");
-        return 0;
+    public void mediana(){
+        System.out.println(enesimoElemento((numeroDescedentes(this)+1)/2));
     }
 
     public void sum(Double[] sum, Double[] count, ABB node) {
@@ -243,6 +248,8 @@ public class ABB {
         return false;
     }
     public boolean ehCompleta(){
+
+
         return false;
     }
     //Métodos de Esther:
@@ -293,7 +300,6 @@ public class ABB {
             String fullString = " (";
 
             fullString += valor;
-            //fullString += " ";
             if(subarvoreEsquerda != null){
                 fullString += subarvoreEsquerda.stringArvore2();
             }
@@ -303,7 +309,7 @@ public class ABB {
             fullString += ")";
             return fullString;
         } else if(subarvoreEsquerda == null && subarvoreDireita != null){
-             return subarvoreDireita.stringArvore2();
+            return subarvoreDireita.stringArvore2();
         } else if(subarvoreEsquerda != null && subarvoreDireita == null){
             return subarvoreEsquerda.stringArvore2();
         }
