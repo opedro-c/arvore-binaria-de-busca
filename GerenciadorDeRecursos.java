@@ -36,42 +36,18 @@ public class GerenciadorDeRecursos {
             stream.forEach((input) -> {
                 String[] op = input.split(" ");
                 switch (op[0]) {
-                    case "BUSCAR":
-                        abb.buscar(Integer.parseInt(op[1]));
-                        break;
-                    case "INSIRA":
-                        abb.insert(Integer.parseInt(op[1]));
-                        break;
-                    case "REMOVA":
-                        abb.remove(Integer.parseInt(op[1]));
-                        break;
-                    case "ENESIMO" :
-                        abb.enesimoElemento(Integer.parseInt(op[1]));
-                        break;
-                    case "POSICAO" :
-                         abb.posicao(Integer.parseInt(op[1]));
-                         break;
-                    case "MEDIANA" :
-                         abb.mediana();
-                         break;
-                    case "MEDIA" :
-                         abb.media(Integer.parseInt(op[1]));
-                         break;
-                    case "CHEIA" :
-                         abb.ehCheia();
-                         break;
-                    case "COMPLETA" :
-                         abb.ehCompleta();
-                         break;
-                    case "PREORDEM" :
-                         abb.pre_ordem();
-                         break;
-                    case "IMPRIMA" :
-                         abb.imprimeArvore(Integer.parseInt(op[1]));
-                         break;
-                    default:
-                        System.out.println("Método não mapeado!");
-                        break;
+                    case "BUSCAR" -> abb.buscar(Integer.parseInt(op[1]));
+                    case "INSIRA" -> abb.insert(Integer.parseInt(op[1]));
+                    case "REMOVA" -> abb.remove(Integer.parseInt(op[1]));
+                    case "ENESIMO" -> abb.enesimoElemento(Integer.parseInt(op[1]));
+                    case "POSICAO" -> abb.posicao(Integer.parseInt(op[1]));
+                    case "MEDIANA" -> abb.mediana();
+                    case "MEDIA" -> abb.media(Integer.parseInt(op[1]));
+                    case "CHEIA" -> abb.ehCheia();
+                    case "COMPLETA" -> abb.ehCompleta();
+                    case "PREORDEM" -> abb.pre_ordem();
+                    case "IMPRIMA" -> abb.imprimeArvore(Integer.parseInt(op[1]));
+                    default -> System.out.println("Método não mapeado!");
                 }
             });
         } catch (IOException e) {
