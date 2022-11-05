@@ -242,13 +242,40 @@ public class ABB {
         return 0;
     }
 
+    public void preOrdem(ABB no){
+        System.out.println(no.valor);
+        if(no.subarvoreEsquerda != null){
+            preOrdem(no.subarvoreEsquerda);
+        }
+        if(no.subarvoreDireita != null){
+            preOrdem(no.subarvoreDireita);
+        }
+    }
+
+    public int maiorAltura(ABB no){
+       int altEsq =  no.subarvoreEsquerda.maiorAltura(no);
+       int altDir =  no.subarvoreDireita.maiorAltura(no);
+
+       if(altEsq > altDir){
+           return altEsq;
+       }
+       else return altDir;
+    }
+
     //Métodos de Thuanny:
     public boolean ehCheia(){
+
+        if(this.numeroDescedentes(this) + 1 == Math.pow(2, this.maiorAltura(this) +1) + 1){
+            return true;
+        }
 
         return false;
     }
     public boolean ehCompleta(){
-
+        int nivel = this.altura;
+        if(this.numeroDescedentes(this) == 0 && nivel == maiorAltura(this)){
+            return true;
+        }
 
         return false;
     }
@@ -314,6 +341,29 @@ public class ABB {
             return subarvoreEsquerda.stringArvore2();
         }
         return "";
+    }
+
+    public static void main(String[] args) {
+        ABB arvore = new ABB(32, 13, 5, 41, 20, 60);
+        System.out.println(arvore.ehCheia());
+        System.out.println(arvore.ehCompleta());
+        arvore.enesimoElemento(3);
+        arvore.insert(36);
+        arvore.ehCheia();
+        arvore.pre_ordem();
+        System.out.println(arvore.valor);
+        System.out.println(arvore.valor);
+        arvore.remove(50);
+        arvore.insert(15);
+        arvore.remove(32);
+        arvore.posicao(15);
+        arvore.insert(39);
+        arvore.enesimoElemento(5);
+        arvore.mediana();
+        arvore.media(20);
+        arvore.buscar(36);
+        arvore.insert(25);
+        arvore.mediana();
     }
 
 }
