@@ -242,7 +242,7 @@ public class ABB {
         return 0;
     }
 
-    public void preOrdem(ABB no){
+    /*public void preOrdem(ABB no){
         System.out.println(no.valor);
         if(no.subarvoreEsquerda != null){
             preOrdem(no.subarvoreEsquerda);
@@ -250,34 +250,55 @@ public class ABB {
         if(no.subarvoreDireita != null){
             preOrdem(no.subarvoreDireita);
         }
-    }
+    }*/
 
     public int maiorAltura(ABB no){
-       int altEsq =  no.subarvoreEsquerda.maiorAltura(no);
-       int altDir =  no.subarvoreDireita.maiorAltura(no);
-
-       if(altEsq > altDir){
-           return altEsq;
-       }
-       else return altDir;
+        int altEsq = no.altura, altEsq2 = 0;
+        int altDir = no.altura, altDir2 = 0;
+        if(no.subarvoreEsquerda != null) altEsq2 = no.maiorAltura(no.subarvoreEsquerda);
+        if(no.subarvoreDireita != null) altDir2 = no.maiorAltura(no.subarvoreDireita);
+        if(altEsq < altEsq2) altEsq = altEsq2;
+        if(altDir < altDir2) altDir = altDir2;
+        //if(no.subarvoreEsquerda == null && no.subarvoreDireita == null) return no.altura;
+        if(altEsq > altDir){
+            return altEsq;
+        }
+        else return altDir;
     }
 
     //Métodos de Thuanny:
     public boolean ehCheia(){
-
-        if(this.numeroDescedentes(this) + 1 == Math.pow(2, this.maiorAltura(this) +1) + 1){
+        if(this.numeroDescedentes(this) + 1 == Math.pow(2, this.maiorAltura(this) + 1) - 1){
+            System.out.println("A árvore é cheia");
             return true;
         }
-
+        System.out.println("A árvore não é cheia");
         return false;
     }
-    public boolean ehCompleta(){
-        int nivel = this.altura;
-        if(this.numeroDescedentes(this) == 0 && nivel == maiorAltura(this)){
-            return true;
+    private boolean ehCompleta(int height){
+        if(this.subarvoreEsquerda != null){
+            return this.subarvoreEsquerda.ehCompleta(height);
         }
-
-        return false;
+        if(this.subarvoreDireita != null){
+            return this.subarvoreDireita.ehCompleta(height);
+        }
+        if(this.altura < height-1) return false;
+        return true;
+    }
+    public boolean ehCompleta(){
+        int height = maiorAltura(this);
+        if(this.subarvoreEsquerda != null){
+            return this.subarvoreEsquerda.ehCompleta(height);
+        }
+        if(this.subarvoreDireita != null){
+            return this.subarvoreDireita.ehCompleta(height);
+        }
+        if(this.altura < height) {
+            System.out.println("A árvore não é completa");
+            return false;
+        }
+        System.out.println("A árvore é completa");
+        return true;
     }
     //Métodos de Esther:
     public String pre_ordem(){
@@ -342,28 +363,4 @@ public class ABB {
         }
         return "";
     }
-
-    public static void main(String[] args) {
-        ABB arvore = new ABB(32, 13, 5, 41, 20, 60);
-        System.out.println(arvore.ehCheia());
-        System.out.println(arvore.ehCompleta());
-        arvore.enesimoElemento(3);
-        arvore.insert(36);
-        arvore.ehCheia();
-        arvore.pre_ordem();
-        System.out.println(arvore.valor);
-        System.out.println(arvore.valor);
-        arvore.remove(50);
-        arvore.insert(15);
-        arvore.remove(32);
-        arvore.posicao(15);
-        arvore.insert(39);
-        arvore.enesimoElemento(5);
-        arvore.mediana();
-        arvore.media(20);
-        arvore.buscar(36);
-        arvore.insert(25);
-        arvore.mediana();
-    }
-
 }
